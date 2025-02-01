@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block content %} 
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-body">
+      <form action="/saveenquiry/" method="post">
+        {%csrf_token %}
+        <div class="mb-3">
+          <label for="FirstName1" class="form-label">First Name:</label>
+          <input type="First Name" class="form-control" id="FirstName1" name="FirstName1" aria-describedby="FirstNameHelp">
+          <label for="Email1" class="form-label">Last Name:</label>
+          <input type="LastName" class="form-control" id="LastName1" name="LastName1" aria-describedby="LastNameHelp">
+          <label for="Email1" class="form-label">Email address:</label>
+          <input type="email" class="form-control" id="Email1" name="Email1"aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+           <label for="Mobile no."class="form-label">Mobile no.</label>
+           <input type="text" class="form-control" id="Mobileno" name="Mobileno" pattern="[1-9]{1}[0-9]{9}">  
+        </div>
+
+        <div class="mb-3">
+          <label for="subject"class="form-label">Subject:</label> 
+          <textarea class="form-control" id="subject" name="subject" cols="4" rows="6" placeholder="Write something.."></textarea>  
+        </div>
+
+
+        <button type="submit"class="btn btn-primary">Send</button>
+      </form>
+    </div>
+
+    <div id="text_12" class="form-html" data-component="text" tabindex="-1">
+      <p style="text-align: center;">You may also call us at: 333-444-33</p></div>
+  </div>
+</div>
+{% endblock %}
+

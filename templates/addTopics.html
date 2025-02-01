@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+{% block content %} 
+<div class="container mt-3" >
+    <form action="/addTopics/" method="post">
+        {% csrf_token %}
+            <div class="mb-3">
+              <label for="InputaddTopic1" class="form-label">Add Topics:</label>
+              <input type="addTopics" name="techName" class="form-control" id="InputaddTopics1" aria-describedby="addTopicsHelp">
+            </div>
+            <div class="mb-3">
+                <label for="Inputsubject" class="form-label">Subject:</label> 
+                <textarea class="form-control" name="techDesc" id="Inputsubject" cols="4" rows="6" placeholder="Write something.."></textarea>  
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+{%endblock content%}

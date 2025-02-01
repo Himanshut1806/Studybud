@@ -1,0 +1,85 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="container mt-2">
+    <h2>Machine Learning:</h2>
+    <p>Machine learning (ML) is a subset of artificial intelligence (AI) that focuses on the development of algorithms that allow computers to learn from data and make predictions or decisions without being explicitly programmed. In simpler terms, it's about teaching computers how to recognize patterns in data and use those patterns to perform tasks, solve problems, or make decisions based on new information.</p>
+    <h4>Key Concepts of Machine Learning:</h4>
+
+<h6>Data:</h6>
+<p>Machine learning relies heavily on data. The more data an algorithm has, the better it can learn and make accurate predictions. This data can come in many forms—text, images, audio, or even sensor readings.</p>
+<h6>Models:</h6>
+
+<p>A model is a mathematical representation of a process or system that machine learning algorithms use to make predictions or decisions based on the input data. For example, a model could predict future sales based on historical data.</p>
+<h6>Training:</h6>
+
+<p>Training involves feeding data into the machine learning algorithm so it can learn patterns or relationships from that data. The algorithm adjusts its internal parameters (weights) during this process to improve accuracy.</p>
+<h6>Features:</h6>
+
+<p>Features are individual measurable properties or characteristics of the data. For instance, in a dataset about houses, features might include size, location, number of bedrooms, etc.</p>
+<h6>Labels:</h6>
+
+<p>In supervised learning, labels are the correct answers or outcomes associated with each data point. For example, in a dataset predicting house prices, the label would be the actual price of each house. </p> 
+   
+
+<h4>Types of Machine Learning:</h4>
+<h5>Supervised Learning:</h5>
+
+<p>Supervised learning is the most common type of machine learning. In this approach, the algorithm is trained on a labeled dataset, meaning that the input data (features) is paired with the correct output (label). The goal is for the model to learn the mapping between inputs and outputs so it can predict the label for new, unseen data.</p>
+
+<h6>Examples:</h6>
+
+<p><h6>Classification:</h6> Assigning labels to data, such as categorizing emails as spam or not spam, or predicting whether a loan applicant will default.</p>
+<p><h6>Regression:</h6> Predicting continuous values, like forecasting sales, stock prices, or house prices.</p>
+<h6>Algorithms:</h6>
+
+<p>Linear regression
+Decision trees
+Support vector machines (SVM)
+k-Nearest Neighbors (k-NN)
+Neural networks</p>
+<h5>Unsupervised Learning:</h5>
+
+<p>Unsupervised learning involves training the algorithm on data that doesn't have labeled output. The goal is to find hidden patterns or groupings in the data without any predefined categories or outcomes.</p>
+
+<h6>Examples:</h6>
+
+<p><h6>Clustering:</h6> Grouping data into clusters based on similarities, such as customer segmentation for marketing or grouping similar articles.</p>
+<p><h6>Dimensionality Reduction:</h6> Reducing the number of features in a dataset while preserving as much information as possible, often used for data visualization (e.g., Principal Component Analysis or PCA).</p>
+<h6>Algorithms:</h6>
+
+<p>k-Means clustering
+Hierarchical clustering
+DBSCAN
+Autoencoders</p>
+<h6>Reinforcement Learning:</h6>
+
+<p>Reinforcement learning (RL) is a type of learning where an agent learns how to take actions in an environment to maximize some notion of cumulative reward. The agent receives feedback in the form of rewards or penalties, guiding it to learn optimal behavior.</p>
+
+<h6>Examples:</h6>
+
+<p>Game playing (e.g., AlphaGo, chess, or video games)
+Autonomous vehicles navigating traffic
+Robotics for tasks like picking up objects or assembling products</p>
+<h5>Key Concepts:</h5>
+
+<p><h6>Agent:</h6>The learner or decision maker.</p>
+<p><h6>Environment:</h6> The external system the agent interacts with.</p>
+<p><h6>Actions:</h6> The choices the agent can make.</p>
+<p><h6>Rewards:</h6> Feedback received after actions.</p>
+<p><h6>Policy:</h6> The strategy that the agent uses to decide actions based on observations.</p>
+<h5>Semi-Supervised Learning:</h5>
+
+<p>Semi-supervised learning combines both labeled and unlabeled data to train the model. This approach is often used when labeling data is expensive or time-consuming. It allows the model to learn from a smaller set of labeled data and a larger set of unlabeled data.</p>
+<h5>Self-Supervised Learning:</h5>
+
+<p>Self-supervised learning is a type of unsupervised learning where the model learns to predict part of the data from other parts. This approach is often used in natural language processing (NLP) and computer vision tasks.</p>
+    <div class="row my-2">
+        <div class="col-sm-4">
+              <a href="/" class="btn btn-primary">Back to Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {% endblock %}
