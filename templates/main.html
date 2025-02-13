@@ -1,189 +1,182 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>StudyBud</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert {{message.tags}} alert-dismissible fade show mb-0" role="alert">
-          <strong>Message!</strong> {{message}}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% endfor %}
-    {% endif %}
+<html lang="en">
 
-      <nav class="navbar navbar-expand-lg bg-info">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="/">Web Trends</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/about">About</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link active dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Topics
-              </a>
-              <ul class="dropdown-menu">
-                {% for tech in technologies %}
-                <li><a class="dropdown-item" href="/tech-details/?tech_id={{tech.id}}">{{tech}}</a></li>
-                {% endfor %}
-                
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="/contact">Contact Us</a>
-            </li>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="https://studybuddev.herokuapp.com/static/static/images/logo.svg">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Web Trends</title>
+</head>
 
-            <li class="nav-item">
-              <a class="nav-link active" href="/addTopics">Add Topics</a>
-            </li>
+<body>
+    {% if messages %}   <!--This lines checks if there are ant messages to display.--> 
+    {% for message in messages %}   <!--This line begins a for loop that iterates over each message in the messages list-->
+    <div class="alert {{message.tags}} alert-dismissible fade show mb-0" role="alert">
+        <strong>Message!</strong> {{message}} <!--This line display the message content within the alert.The <Strong> tag is used to bold the word message-->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}    <!--This line ends the for loop-->
+    {% endif %}     <!--This line ends the If loop-->
 
-          </ul>
-          <form method="get" action="/search" class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Type...." aria-label="Search" name="query" id="search"/>
-            <button class="btn btn-outline-danger" type="submit">
-              Search
+    <nav class="navbar navbar-expand-lg bg-info">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Web Trends</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-          </form>
-          {% if user.is_authenticated %}
-          <div class="dropdown mx-2">
-            <p class=" dropdown-toggle mb-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome {{request.user}}
-            </p>
-            <ul class="dropdown-menu mt-3">
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-          </div>
-          {% else %}
-          <div class="mx-2">
-            <button class="btn btn-success" data-bs-toggle="modal" 
-            data-bs-target="#LoginModal">Login</button>
-            <button class="btn btn-danger" data-bs-toggle="modal" 
-            data-bs-target="#SignUpModal">SignUp</button>
-          </div>
-          {% endif %}
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Topics
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% for tech in technologies %}
+                            <li><a class="dropdown-item"
+                                    href="/tech-details/?tech_id={{tech.id}}">{{tech}}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/contact">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/addTopics">Add Topics</a>
+                    </li>
+
+                </ul>
+                <form method="get" action="/search" class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Type...." aria-label="Search"
+                        name="query" id="search">
+                    <button class="btn btn-outline-danger" type="submit">
+                        Search
+                    </button>
+                </form>
+                {% if user.is_authenticated %}
+                <div class="dropdown mx-2">
+                    <p class=" dropdown-toggle mb-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Welcome {{request.user}}
+                    </p>
+                    <ul class="dropdown-menu mt-3">
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                <div class="mx-2">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
+                    <button class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#SignUpModal">SignUp</button>
+                </div>
+                {% endif %}
+            </div>
         </div>
-      </div>
     </nav>
 
-<!--Login Modal -->
-<div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="LoginModalLabel">Login to Web Trends</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action="/login" method="post">
-        {% csrf_token %}
-          <div class="mb-3">
-            <label for="username" class="form-label">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-          <a href="#" class="btn btn-default" data-bs-toggle="modal" 
-          data-bs-target="#SignUpModal">Create Account</a>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </form>
-      </div>
+    <!--Login Modal -->
+    <div class="modal fade" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="LoginModalLabel">Login to Web Trends</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/login" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                aria-describedby="usernameHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <a href="#" class="btn btn-default" data-bs-toggle="modal"
+                            data-bs-target="#SignUpModal">Create Account</a>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<!--signup Modal -->
-<div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="SignUpModalLabel">Get an Web Trends account</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form action='signup' method='post'>
-          {% csrf_token %}
-          <div class="mb-3">
-            <label for="username" class="form-label">User Name</label>
-            <input type="username" class="form-control" id="username" name="username" aria-describedby="usernameHelp" required>
-            <label for="FirstName1" class="form-label">First Name</label>
-            <input type="First Name" class="form-control" id="FirstName1" name="FirstName1" aria-describedby="FirstNameHelp" required>
-            <label for="LastName1" class="form-label">Last Name</label>
-            <input type="LastName" class="form-control" id="LastName1" name="LastName1" aria-describedby="LastNameHelp" required>
-            <label for="Email1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="Email1" name="Email1" aria-describedby="emailHelp" required>
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3">
-            <label for="Password1" class="form-label">Password</label>
-            <input type="password" class="form-control" id="Password1" name="Password1" required>
-          </div>
-          <div class="mb-3">
-            <label for="Password2" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="Password2" name="Password2" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Create Account</button>
-          <a href="#" class="btn btn-default" data-bs-toggle="modal" 
-          data-bs-target="#LoginModal">Login</a>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
-</div>
+    <!--signup Modal -->
+    <div class="modal fade" id="SignUpModal" tabindex="-1" aria-labelledby="SignUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="SignUpModalLabel">Get an Web Trends account</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action='signup' method='post'>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="username" class="form-label">User Name</label>
+                            <input type="text" class="form-control" id="username" name="username"
+                                aria-describedby="usernameHelp" required>
+                            <label for="FirstName1" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="FirstName1" name="FirstName1"
+                                aria-describedby="FirstNameHelp" required>
+                            <label for="LastName1" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="LastName1" name="LastName1"
+                                aria-describedby="LastNameHelp" required>
+                            <label for="Email1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="Email1" name="Email1"
+                                aria-describedby="emailHelp" required>
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="Password1" name="Password1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Password2" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="Password2" name="Password2" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                        <a href="#" class="btn btn-default" data-bs-toggle="modal"
+                            data-bs-target="#LoginModal">Login</a>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     {% block content %} {% endblock %}
+
     <footer class="py-3 my-4">
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="/" class="nav-link px-2 text-unmuted">Home</a></li>
-        <li class="nav-item"><a href="/contact" class="nav-link px-2 text-unmuted">Contact Us</a></li>
-        <li class="nav-item"><a href="/technology" class="nav-link px-2 text-unmuted">Topics</a></li>
-        <li class="nav-item"><a href="/about" class="nav-link px-2 text-unmuted">About</a></li>
-      </ul>
-      <p class="text-center text-unmuted">&copy; 2023 Company, Inc</p>
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="/contact" class="nav-link px-2 text-muted">Contact Us</a></li>
+            <li class="nav-item"><a href="/about" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+        <p class="text-center text-muted">&copy; 2023 Company, Inc</p>
     </footer>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
 </html>
