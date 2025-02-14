@@ -6,9 +6,11 @@ from .models import Topic                        # This assumes that have a mode
 from django.contrib.auth.models import User      # Imports the build-in User model for authentication.
 from .models import contactEnquiry               # Imports the contact enquiry models from the current app models.py file.
 
+
+
 technologies_list = Topic.objects.all() # filter, get Global Variables : Retrieves all topic objects from the database and assign them to the technologies_list variable.this variable 
-                                        # accessible to all the view function in this file,so the technologies can be rendered in all the messages.
-#HTML Pages
+                                     # accessible to all the view function in this file,so the technologies can be rendered in all the messages.
+#HTML Pages  
 def home(request):                    # def home (request): Defines the home Views.
     return render(request,'home.html',{'technologies': technologies_list})   # return render : render the home.html template and passess the technologies_list to it. 
 
@@ -17,13 +19,13 @@ def ContactUs(request):
 
 def about(request):
     return render(request,'about.html',{'technologies': technologies_list})
-
+ 
 def Webperformance(request):
     return render(request,'webperformance.html',{'technologies': technologies_list})
-
+  
 def webDevelopment(request):
     return render(request,'webDevelopment.html',{'technologies': technologies_list})
-
+ 
 def Augmentedreality(request):
     return render(request,'augmentedreality.html',{'technologies': technologies_list})
 
@@ -32,19 +34,19 @@ def Blockchain(request):
 
 def Virtualreality(request):
     return render(request,'virtualreality.html',{'technologies': technologies_list})
-
+  
 def Robotics(request):
     return render(request,'robotics.html',{'technologies': technologies_list})
-
+ 
 def dataanalytics(request):
     return render(request,'dataanalytics.html',{'technologies': technologies_list})
 
 def iotsolutions(request):
     return render(request,'iotsolutions.html',{'technologies': technologies_list})
-
+ 
 def machinelearning(request):
     return render(request,'machinelearning.html',{'technologies': technologies_list})
-
+  
 def TechDetails(request):                   # which displays details for a specific technology.
     context = {}                            # Initializes an empty dictionary to hold context data.
     tech_id = request.GET.get('tech_id')    # Retrieves the value of the 'tech_id' parameter from the GET request (tech_id= 5).
@@ -91,7 +93,7 @@ def signup(request):                             # Handles  user registration.
 
     else:
         return HttpResponse('Not Allowed')
-
+    
 def Userlogin(request):
     if request.method == 'POST':
         username= request.POST['username']
@@ -112,8 +114,7 @@ def Userlogout(request):
     logout(request)
     messages.success(request,"Successfully Logged Out")
     return redirect('/')
-
-
+ 
 def saveEnquiry(request):                    # Handles saving contact enquiries.
     if request.method == 'POST':
         FirstName1= request.POST['FirstName1']
